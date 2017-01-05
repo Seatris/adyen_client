@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = "adyen_client"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.date         = "2015-12-16"
   s.summary      = "A simple client that talks to the Adyen API"
   s.description  = "Does not try to be smart, stays close to the documentation while adhering to ruby conventions."
@@ -14,4 +14,3 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '~> 2.0'
   s.add_runtime_dependency 'httparty', '~> 0.13.5'
 end
-
