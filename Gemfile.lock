@@ -1,26 +1,26 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    hashdiff (0.2.3)
-    httparty (0.13.7)
-      json (~> 1.8)
+    hashdiff (0.3.2)
+    httparty (0.14.0)
       multi_xml (>= 0.5.2)
-    json (1.8.3)
     metaclass (0.0.4)
-    minispec-metadata (2.0.0)
+    minispec-metadata (3.2.1)
       minitest
-    minitest (5.8.3)
+    minitest (5.10.1)
     minitest-spec (0.0.2.1)
       minitest (>= 3.0)
-    mocha (1.1.0)
+    mocha (1.2.1)
       metaclass (~> 0.0.1)
-    multi_xml (0.5.5)
+    multi_xml (0.6.0)
+    public_suffix (2.0.5)
     safe_yaml (1.0.4)
-    vcr (3.0.0)
-    webmock (1.22.3)
+    vcr (3.0.3)
+    webmock (2.3.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -37,4 +37,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.13.7
