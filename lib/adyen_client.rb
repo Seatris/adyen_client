@@ -87,7 +87,7 @@ class AdyenClient
   #                        Note however that most card issues allow for not more than 22 characters.
   #
   # Returns an AdyenClient::Response or your specific response implementation.
-  def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurring_reference: "LATEST", merchant_account: @merchant_account, currency: configuration.default_currency, statement: "")
+def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurring_reference: "LATEST", merchant_account: @merchant_account, currency: @currency, statement: "")
     postJSON("/Payment/#{ADYEN_API_VERSION}/authorise",
       reference: reference,
       amount: { value: amount, currency: currency },
