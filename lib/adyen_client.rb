@@ -209,12 +209,31 @@ class AdyenClient
 
   # Public: Cancels a credit card transaction.
   #
+  # :original_reference   - The psp_reference from Adyen for this transaction.
+  # :reference            - Your reference id for this transaction.
+  # :modification_amount  - The amount to capture.
+  #                         :currency   - Must match currency used in authorisation request.
+  #                         :value      - Must be smaller than or equal to the authorised amount.
+  # :merchant_account     - Use a specific merchant account for this transaction (default: set by the instance or configuration default merchant account).
+  #
+  # Returns an AdyenClient::Response or your specific response implementation.
+  def capture(original_reference:, reference:, modification_amount:, merchant_account: @merchant_account)
+    postJSON("/Payment/#{ADYEN_API_VERSION}/capture",
+      reference: reference,
+      merchantAccount: merchant_account,
+      modificationAmount: modification_amount,
+      originalReference: original_reference
+    )
+  end
+
+  # Public: Cancels a credit card transaction.
+  #
   # :original_reference - The psp_reference from Adyen for this transaction.
   # :reference          - Your reference id for this transaction.
   # :merchant_account   - Use a specific merchant account for this transaction (default: set by the instance or configuration default merchant account).
   #
   # Returns an AdyenClient::Response or your specific response implementation.
-  def cancel(original_reference:, reference:, merchantAccount: @merchant_account)
+  def cancel(original_reference:, reference:, merchant_account: @merchant_account)
     postJSON("/Payment/#{ADYEN_API_VERSION}/cancel",
       reference: reference,
       merchantAccount: merchant_account,
@@ -231,7 +250,7 @@ class AdyenClient
   # :currency           - Use a specific 3-letter currency code (default: set by the instance or configuration default currency).
   #
   # Returns an AdyenClient::Response or your specific response implementation.
-  def refund(original_reference:, amount:, reference:, merchantAccount: @merchant_account, currency: @currency)
+  def refund(original_reference:, amount:, reference:, merchant_account: @merchant_account, currency: @currency)
     postJSON("/Payment/#{ADYEN_API_VERSION}/refund",
       reference: reference,
       merchantAccount: merchant_account,
