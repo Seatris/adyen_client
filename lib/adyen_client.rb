@@ -6,7 +6,7 @@ require "httparty"
 class AdyenClient
   include HTTParty
 
-  ADYEN_API_VERSION = "v18"
+  ADYEN_API_VERSION = "v30"
   # Internal: Access the configuration instance.
   def self.configuration
     @configuration ||= Configuration.new
@@ -85,9 +85,13 @@ class AdyenClient
   # :currency            - Use a specific 3-letter currency code. (default: set by the instance or configuration default currency)
   # :statement           - Supply a statement that should be shown on the customers credit card bill. (default: "")
   #                        Note however that most card issues allow for not more than 22 characters.
+  # :recurring_processing_model - Added in v30 of the Adyen API and required by Visa as of April 2018. One of "Subscription" or "CardOnFile". Defaults to "CardOnFile").
   #
   # Returns an AdyenClient::Response or your specific response implementation.
-def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurring_reference: "LATEST", merchant_account: @merchant_account, currency: @currency, statement: "")
+def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurring_reference: "LATEST", merchant_account: @merchant_account, currency: @currency, statement: "", recurring_processing_model: "CardOnFile")
+    unless %w(Subscription CardOnFile).include?(recurring_processing_model)
+      raise ArgumentError, 'invalid recurring_processing_model'
+    end
     postJSON("/Payment/#{ADYEN_API_VERSION}/authorise",
       reference: reference,
       amount: { value: amount, currency: currency },
@@ -97,7 +101,8 @@ def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurri
       selectedRecurringDetailReference: recurring_reference,
       selectedBrand: "",
       recurring: { contract: "RECURRING" },
-      shopperInteraction: "ContAuth"
+      shopperInteraction: "ContAuth",
+      recurringProcessingModel: recurring_processing_model
     )
   end
   alias_method :authorize_recurring_payment, :authorise_recurring_payment
