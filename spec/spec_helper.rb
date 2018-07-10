@@ -4,7 +4,7 @@ Bundler.setup(:default, :test)
 require "minitest/spec"
 require "minitest/autorun"
 require "webmock"
-require "mocha/mini_test"
+require 'mocha/minitest'
 require "vcr"
 require "minispec-metadata"
 
