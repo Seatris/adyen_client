@@ -2,35 +2,36 @@
 http_interactions:
 - request:
     method: post
-    uri: https://ws_574277%40Company.OpenSource:Q%29%256IpQdZiqU5tb3A1cw47e%3E%25@pal-test.adyen.com/pal/servlet/Recurring/v12/listRecurringDetails
+    uri: https://pal-test.adyen.com/pal/servlet/Recurring/v30/listRecurringDetails
     body:
       encoding: UTF-8
       string: '{"shopperReference":"john","recurring":{"contract":"RECURRING"},"merchantAccount":"OpenSourceCOM"}'
     headers:
       Content-Type:
       - application/json; charset=utf-8
+      Authorization:
+      - Basic d3NfNTc0Mjc3QENvbXBhbnkuT3BlblNvdXJjZTpRKSU2SXBRZFppcVU1dGIzQTFjdzQ3ZT4l
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 15 Apr 2016 09:26:28 GMT
+      - Tue, 10 Jul 2018 13:04:25 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=B739E620F90FFD461D0DBD93DB9AE879.test103e; Path=/pal/; Secure;
-        HttpOnly
+      - JSESSIONID=86754D3F1EF4FDBCFE096AB4C361F583.test3e; Path=/pal; Secure; HttpOnly
       Pspreference:
-      - '8814607123882146'
-      Content-Length:
-      - '528'
+      - '8515312278654059'
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json;charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"creationDate":"2015-12-23T11:15:18+01:00","details":[{"RecurringDetail":{"additionalData":{"cardBin":"510008"},"alias":"C189971601011356","aliasType":"Default","card":{"expiryMonth":"8","expiryYear":"2018","holderName":"John
+      string: '{"creationDate":"2015-12-23T11:15:18+01:00","details":[{"RecurringDetail":{"additionalData":{"cardBin":"510008"},"alias":"B713642431666044","aliasType":"Default","card":{"expiryMonth":"8","expiryYear":"2018","holderName":"John
         Doe","number":"3332"},"contractTypes":["RECURRING"],"creationDate":"2015-12-23T11:15:18+01:00","firstPspReference":"7914508657186147","paymentMethodVariant":"bijcard","recurringDetailReference":"8314508657181050","variant":"bijcard"}}],"lastKnownShopperEmail":"john@doe.com","shopperReference":"john"}'
     http_version: 
-  recorded_at: Fri, 15 Apr 2016 09:26:28 GMT
-recorded_with: VCR 3.0.0
+  recorded_at: Tue, 10 Jul 2018 13:04:25 GMT
+recorded_with: VCR 4.0.0

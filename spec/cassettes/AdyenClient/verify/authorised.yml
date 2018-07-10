@@ -2,34 +2,35 @@
 http_interactions:
 - request:
     method: post
-    uri: https://ws_574277%40Company.OpenSource:Q%29%256IpQdZiqU5tb3A1cw47e%3E%25@pal-test.adyen.com/pal/servlet/Payment/v12/authorise
+    uri: https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise
     body:
       encoding: UTF-8
-      string: '{"reference":"3eddfad2-57fb-486f-859b-ba39fae6ed92","amount":{"value":0,"currency":"EUR"},"additionalAmount":{"value":123,"currency":"EUR"},"merchantAccount":"OpenSourceCOM","additionalData":{"card.encrypted.json":"adyenjs_0_1_15$hAOv0nb0eX7hmXpvT5dK/obqbUjMaOIvJGA64m0cmn6VTZDBGco2EvY5/2SPXrty23kBQzZsUlO+KF8BR9kXTi4p2+Jky8RDywJqamkb5Y/6oSl7oU4p9WMN5APYjOfDseBT2GkibdYADSPGWatrKAYrn2t0S9qZkGriP9IxLhlwq9D8N/n9AWeOe4p0Aidr0NDm6KDxJZY7N67fSl55+Mu0jsiXE6fbQ03Mdtx8UNhMVHcANS8XH3OOwZk9dZMlkIOJDi7OgKbE0ZfqABh/VfhFzsJpZHKD508tCUB/90bY917A9mbIWgKSnxdYeSBh7T0+2QCGFBllR1vh4NgfAA==$wu1r67pMH3Z3zKVpbCXksyUkRrOlMeeFI9Fpz2G2df4Ad+gGD1+Gmzu0gD3H/F3B3BGwkF9Yqb2LJmyNRBLu2EkdoHBmb81cSTBpwnxRQ086aedugXUBp7Z+ZDt5eP6LhiJfBTN1RO56EDqxYUvIZ6hDBv/U272ZFPbVrLBAaz/RYbK/W4S8zK8pZ5UZq8g7Oo7qoumsdendhH2PfYpPm4rD/xFeMoxOwuYgVCqXIAsBKvJiuhDWdveUhCKC08uf8hrGtozP/rdl9vOIozjmA7NjZaYSatd5nD9p99sQMR/qHzAhi/tA9qchEqr85PbCDjWCrHqgy0Od3CFo/nmMFRHQFKb/qys="},"shopperEmail":null,"shopperIP":null,"shopperReference":null,"shopperStatement":""}'
+      string: '{"reference":"a13ae525-bab5-4a8d-841e-fb25f1f2fee5","amount":{"value":0,"currency":"EUR"},"additionalAmount":{"value":123,"currency":"EUR"},"merchantAccount":"OpenSourceCOM","additionalData":{"card.encrypted.json":"adyenjs_0_1_15$NZcG1Vlfm6+9wygEzXFEjTCQ1go1RophriLC3DvvGKX5HH+3tI4q/xhZ9j6THxEHgbDrQoQFSjkxVJvteCkExFgnwKjRCJKH8M9AfOj4abyO/HQkJ+wR9rnVPxAeBHvHkkcYN0vJ4BxqqE+MX1cJjTvj15B/hKc6K1RNqNLg3h1aQas55GVxsYDT9pZM+ywMMY/rmhw0JcsbfJL17ui1fmwQCIMT0uOvWtWSP+OVYXoLYjlzEszWieIdip9ZCEhFIaK6dgsoPWwTu67mmWU+7EjwDDMmjMrzctcf5Q4Ofkx066bWULiYtAZjvkrdh67X5Ff13pVG0+gXMy5EaxJQGg==$lmXl2HmmBshGyG2Vs1NxQnJB/YGIwfNfvYjTkQUXxDkJOSkTAPc/cmmpJTgaNbwC7jGN/3qHfwGHt20IvipVpi9Q2ZIz0JOuQ2KPQtD3GG4xOTy1+KqJFFl8hiD055MoLxY8saeR51YybmVGK8xLwwow4Dce7InkD5x7rNXOrwQV6KErR0ZLzE2vU6ulKOg156XhSXaI3wjPJXRdI47+JaVvaulmz6drPZXaXXeEA7w0qfgDCNqD0FoyyxNV5h7g5qiRl0shmXGggCNWzPzdhPUQ0+WgOYcGGaxsZyEVXloRNjhU2rK9YnM4Xw04pekPFfNjvMcMpDmXAf8nQ4xXZnmwq7oAG2KQLmL4Bw5JxX4PC65kyVc="},"shopperEmail":null,"shopperIP":null,"shopperReference":null,"shopperStatement":""}'
     headers:
       Content-Type:
       - application/json; charset=utf-8
+      Authorization:
+      - Basic d3NfNTc0Mjc3QENvbXBhbnkuT3BlblNvdXJjZTpRKSU2SXBRZFppcVU1dGIzQTFjdzQ3ZT4l
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 15 Apr 2016 09:26:27 GMT
+      - Tue, 10 Jul 2018 13:04:25 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=3C07C080BEA5A44E64A70AAA233C935B.test104e; Path=/pal/; Secure;
-        HttpOnly
+      - JSESSIONID=E949A7665BE74FC62AD4C309897FCD19.test104e; Path=/pal; Secure; HttpOnly
       Pspreference:
-      - '7914607123875349'
-      Content-Length:
-      - '80'
+      - '8815312278659725'
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json;charset=utf-8
     body:
       encoding: UTF-8
-      string: '{"pspReference":"7914607123875349","resultCode":"Authorised","authCode":"99552"}'
+      string: '{"pspReference":"8815312278659725","resultCode":"Authorised","authCode":"39500"}'
     http_version: 
-  recorded_at: Fri, 15 Apr 2016 09:26:27 GMT
-recorded_with: VCR 3.0.0
+  recorded_at: Tue, 10 Jul 2018 13:04:26 GMT
+recorded_with: VCR 4.0.0
