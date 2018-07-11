@@ -84,13 +84,24 @@ else
 end
 ```
 
+## Tests
+
+Run tests with minitest:
+
+```bash
+ruby -Ilib:test spec/unit/adyen_client_response_spec.rb
+ruby -Ilib:test spec/unit/adyen_client_spec.rb
+ruby -Ilib:test spec/unit/adyen_client_utils_spec.rb
+```
+
+
 ## Documentation
 
 All publicly usable [methods and classes are documented here](http://rdoc.info/projects/Overbryd/adyen_client).
 
 This library does not try to be too smart, it simply provides a layer of abstraction on top of the Adyen JSON API.
 Also the default `AdyenClient::Response` class basically just wraps the JSON response.
-The only work it does is converting `camelCase` keys to `sneak_case`, removing unnecessary object nestings and providing you with a convenience `authorised?` method. 
+The only work it does is converting `camelCase` keys to `sneak_case`, removing unnecessary object nestings and providing you with a convenience `authorised?` method.
 
 If you want a more sophisticated response class, you can easily hook up your own.
 The only method you need to provide is `::parse`. It will receive one argument, the [`HTTParty::Response`](http://www.rubydoc.info/github/jnunemaker/httparty/HTTParty/Response) for the given request.
