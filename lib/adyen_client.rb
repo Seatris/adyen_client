@@ -279,6 +279,108 @@ def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurri
     )
   end
 
+  # Public: Initiate Payout to an external bank. This class contains data that
+  #         should be passed in the /storeDetailAndSubmitThirdParty request to
+  #         initiate a payout.
+  # !! Important note: you need a special Adyen webservice user for this operation
+  #
+  # :reference          - Your reference id for this transaction.
+  # :amount             - The amount to payout in cents, Hash with value and currency
+  # :bank               - Bank information, Hash with
+  #            :bankName      - Name of the bank
+  #            :bic           - BIC (Swift)
+  #            :iban          - IBAN
+  #            :countryCode   - Country code where the bank is located.
+  #            :bankCity      - Name of the bank
+  #            :ownerName     - The name of the bank account holder. Non Latin letters get converted
+  #            :bankCity      - The bank city
+  #            :taxId         - The bank account holder's tax ID
+  # :receiver            - Receiver is the person who gets the money (called shopper in Adyen), Hash with
+  #            :email         - The receivers's email address
+  #            :reference     - The receivers's reference for the payment transaction
+  #            :firstName     - The first name
+  #            :lastName      - The last name
+  #            :gender        - The following values are permitted: MALE, FEMALE, UNKNOWN
+  #            :dateOfBirth   - BIC (Swift)
+  #            :nationality   - The receivers's nationality
+  # :billingAddress      - billing address
+  #            :houseNumber   - The number (or name) of the house
+  #            :street        - The name of the street
+  #            :city          - The name of the city
+  #            :stateOrProvince - The abbreviation of the state or province
+  #            :country       - The two-character country code of the address
+  #            :postalCode    - The postal code
+  # :merchant_account   - Use a specific merchant account for this transaction (default: set by the instance or configuration default merchant account).
+  #
+  # Returns an StoreDetailAndSubmitResponse
+  # If the message is syntactically valid and merchantAccount is correct, you receive a payout-submit-received response with the following fields:
+  # @see https://docs.adyen.com/api-explorer/#/Payout/v30/storeDetailAndSubmitThirdParty
+  def initiate_payout(reference:,
+                        amount: {
+                          value: 0,
+                          currency: @currency
+                        },
+                        bank: {},
+                        receiver: {},
+                        billingAddress: {},
+                        merchantAccount: @merchant_account)
+    postJSON("/Payout/#{ADYEN_API_VERSION}/storeDetailAndSubmitThirdParty",
+      merchantAccount: @merchant_account,
+      amount: {
+        value: amount[:value],
+        currency: amount[:currency]
+      },
+      recurring: {
+          contract: "RECURRING,PAYOUT"
+      },
+      reference: reference,
+      bank: {
+          bankName: bank[:bankName],
+          bic: bank[:bic],
+          countryCode: bank[:countryCode],
+          iban: bank[:iban],
+          ownerName: bank[:ownerName],
+          bankCity: bank[:bankCity],
+          taxId: bank[:taxId]
+      },
+      shopperEmail: receiver[:email],
+      shopperReference: receiver[:reference],
+      shopperName: {
+          firstName: receiver[:firstName],
+          lastName: receiver[:lastName],
+          gender: receiver[:gender]
+      },
+      dateOfBirth: receiver[:dateOfBirth],
+      entityType: "Person", #"Company"
+      nationality: receiver[:nationality],
+      billingAddress: {
+          houseNumberOrName: billingAddress[:houseNumber],
+          street: billingAddress[:street],
+          city: billingAddress[:city],
+          stateOrProvince: billingAddress[:stateOrProvince],
+          country: billingAddress[:country],
+          postalCode: billingAddress[:postalCode]
+      }
+    )
+  end
+
+
+  # Public: ConfirmPayout. Confirms a previously initated payout
+  #
+  # !! Important note: you need a special Adyen webservice user for this operation.
+  #                    It is NOT the same as for initiating the payout
+  #
+  # :original_reference - The psp_reference from Adyen for this transaction.
+  # :merchant_account   - Use a specific merchant account for this transaction (default: set by the instance or configuration default merchant account).
+  #
+  # Returns an AdyenClient::Response or your specific response implementation.
+  def confirm_payout(original_reference:, merchantAccount: @merchant_account)
+    postJSON("/Payout/#{ADYEN_API_VERSION}/confirmThirdParty",
+      merchantAccount: merchant_account,
+      originalReference: original_reference
+    )
+  end
+
   # Internal: Send a POST request to the Adyen API.
   #
   # path - The Adyen JSON API endpoint path.

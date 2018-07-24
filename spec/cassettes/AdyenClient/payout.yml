@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pal-test.adyen.com/pal/servlet/Payout/v30/storeDetailAndSubmitThirdParty
+    body:
+      encoding: UTF-8
+      string: '{"merchantAccount":"SeatrisBaseFee001","amount":{"value":2099,"currency":"EUR"},"recurring":{"contract":"RECURRING,PAYOUT"},"reference":"August2018PayoutForFoo","bank":{"bankName":"AbnAmro","bic":"ABNANL2A","countryCode":"NL","iban":"NL32ABNA0515071439","ownerName":"Adyen","bankCity":"Amsterdam","taxId":"bankTaxId"},"shopperEmail":"shopper@email.com","shopperReference":"TheShopperReference","shopperName":{"firstName":"Adyen","lastName":"MALE","gender":"Test"},"dateOfBirth":"1990-01-01","entityType":"Person","nationality":"NL","billingAddress":{"houseNumberOrName":"17","street":"Teststreet
+        1","city":"Amsterdam","stateOrProvince":"NY","country":"US","postalCode":"12345"}}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Authorization:
+      - Basic c3RvcmVQYXlvdXRfNDY4MDA0QENvbXBhbnkuU2VhdHJpczotZDFzWyVxN20rOUBRWD1qRG1BN2kyZExG
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 24 Jul 2018 10:55:41 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=D7785C43C2DA0FA6442590BBC12CAB5C.test3e; Path=/pal; Secure; HttpOnly
+      Pspreference:
+      - '8515324297411387'
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"pspReference":"8515324297411387","resultCode":"[payout-submit-received]"}'
+    http_version: 
+  recorded_at: Tue, 24 Jul 2018 10:55:41 GMT
+recorded_with: VCR 4.0.0

@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pal-test.adyen.com/pal/servlet/Payout/v30/confirmThirdParty
+    body:
+      encoding: UTF-8
+      string: '{"merchantAccount":"SeatrisBaseFee001","originalReference":"8515324297411387"}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Authorization:
+      - Basic cmV2aWV3UGF5b3V0XzMxNDMwMEBDb21wYW55LlNlYXRyaXM6NyZlRltSQVRJZElZLWRFSEg+eCVeSHE0Uw==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 24 Jul 2018 11:06:57 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=8E21E3DA4BBE37A9CD8F1930DCDEFF1D.test104e; Path=/pal; Secure; HttpOnly
+      Pspreference:
+      - '8815324304179602'
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"pspReference":"8815324304179602","response":"[payout-confirm-received]"}'
+    http_version: 
+  recorded_at: Tue, 24 Jul 2018 11:06:57 GMT
+recorded_with: VCR 4.0.0
