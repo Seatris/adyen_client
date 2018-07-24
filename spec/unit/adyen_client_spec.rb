@@ -126,4 +126,6 @@ describe AdyenClient, vcr: { per_group: true } do
     end
   end
 
+  describe '#payout  WIP' do
+  end
 end
