@@ -126,6 +126,56 @@ describe AdyenClient, vcr: { per_group: true } do
     end
   end
 
-  describe '#payout  WIP' do
+  describe '#payout' do
+    let(:response)  { client.initiate_payout(
+        reference: 'August2018PayoutForFoo',
+        receiver: {
+          email: "shopper@email.com",
+          reference: "TheShopperReference",
+          firstName: "Adyen",
+          lastName: "MALE",
+          gender: "Test",
+          dateOfBirth: "1990-01-01",
+          nationality: "NL"
+        },
+        bank: {
+          bankName: "AbnAmro",
+          bic: "ABNANL2A",
+          countryCode: "NL",
+          iban: "NL32ABNA0515071439",
+          ownerName: "Adyen",
+          bankCity: "Amsterdam",
+          taxId:"bankTaxId"
+        },
+        amount: {
+          value: 2099,
+          currency: "EUR"
+        },
+        billingAddress: {
+          houseNumber: "17",
+          street: "Teststreet 1",
+          city: "Amsterdam",
+          stateOrProvince: "NY",
+          country: "US",
+          postalCode: "12345"
+        }
+      )
+    }
+    before { assert_no_errors_in_response }
+
+    it "should include the psp_reference in the response" do
+      assert_equal "8515324297411387", response.psp_reference # taken from vcr cassette
+    end
+  end
+
+  describe '#confirm payout' do
+    let(:response)  { client.confirm_payout(original_reference: '8515324297411387')
+    }
+
+    before { assert_no_errors_in_response }
+
+    it "should include the psp_reference in the response" do
+      assert_equal "8815324304179602", response.psp_reference # taken from vcr cassette
+    end
   end
 end

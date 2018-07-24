@@ -282,6 +282,7 @@ def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurri
   # Public: Initiate Payout to an external bank. This class contains data that
   #         should be passed in the /storeDetailAndSubmitThirdParty request to
   #         initiate a payout.
+  # !! Important note: you need a special Adyen webservice user for this operation
   #
   # :reference          - Your reference id for this transaction.
   # :amount             - The amount to payout in cents, Hash with value and currency
@@ -364,14 +365,17 @@ def authorise_recurring_payment(reference:, shopper_reference:, amount:, recurri
   end
 
 
-  # Public: ConfirmPayout
+  # Public: ConfirmPayout. Confirms a previously initated payout
+  #
+  # !! Important note: you need a special Adyen webservice user for this operation.
+  #                    It is NOT the same as for initiating the payout
   #
   # :original_reference - The psp_reference from Adyen for this transaction.
   # :merchant_account   - Use a specific merchant account for this transaction (default: set by the instance or configuration default merchant account).
   #
   # Returns an AdyenClient::Response or your specific response implementation.
   def confirm_payout(original_reference:, merchantAccount: @merchant_account)
-    postJSON("/Payment/#{ADYEN_API_VERSION}/confirmThirdParty",
+    postJSON("/Payout/#{ADYEN_API_VERSION}/confirmThirdParty",
       merchantAccount: merchant_account,
       originalReference: original_reference
     )
